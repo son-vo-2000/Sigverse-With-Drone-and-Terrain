@@ -25,14 +25,6 @@ namespace SIGVerse.Drone
 
 		private Vector3 DroneRotation;
 
-		private void Start()
-		{
-		}
-
-		void Update()
-		{
-
-		}
 		//rather than using update which updates every frame, fixed update runs at a fixed interval
 		//this means taht it can update multiple times per frame
 		private void FixedUpdate()
@@ -49,19 +41,15 @@ namespace SIGVerse.Drone
         void DroneControls()
 		{
 			landing = false;
-
 			if (Input.GetKey(KeyCode.K))
 			{
 				ScreenshotHandler.takeScreenShot_Static(500, 500);
 			}
-
 			#region drone controls
 			if (!landing)
 			{
-
 				Drone.AddForce(0, 8f, 0);//keeps the drone from losing height quickly, since the drone is set to a rigidbody itll fall at 9.8 until it hits a collider
 										 //9.8f(f makes it a float rather than a double
-
 				if (moving == false)
 				{
 					UpArrowDown();
@@ -74,7 +62,6 @@ namespace SIGVerse.Drone
 					WKeyDown();
 					SpaceKeyDown();
 				}
-
 			}
 			else
 			{
@@ -94,9 +81,7 @@ namespace SIGVerse.Drone
 						}
 					}
 				}
-
 			}
-
 			#endregion
 		}
 		void UpArrowDown()
