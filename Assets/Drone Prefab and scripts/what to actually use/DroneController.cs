@@ -212,8 +212,115 @@ namespace SIGVerse.Drone
 
 			#endregion
 		}
+<<<<<<< Updated upstream
         #region landing
 		void land()
+=======
+
+		void DroneAuto()
+        {
+			Vector3 loc = DroneMarkers.transform.GetChild(0).position;
+			float dist = Math.Abs(loc.z - transform.position.z);
+
+			if (transform.position.y < 100)
+			{
+				lift();
+			}
+			else
+            {
+				if (dist > 10)
+					forward();
+			}
+			
+        }
+
+		//forward
+		public void forward()
+        {
+
+			Drone.AddRelativeForce(0, 0, DirectionalSpeed*10);
+			Drone.AddRelativeTorque(10, 0, 0);
+
+		}
+		public void backward()
+        {
+			//backward
+
+			Drone.AddRelativeForce(0, 0, -DirectionalSpeed*10);
+			Drone.AddRelativeTorque(-10, 0, 0);
+
+		}
+
+		public void leftward()
+        {
+
+				Drone.AddRelativeForce(-DirectionalSpeed*10, 0, 0);
+				Drone.AddRelativeTorque(0, 0, 15);
+
+			
+		}
+
+		public void rightward()
+        {
+
+				Drone.AddRelativeForce(DirectionalSpeed*10, 0, 0);
+				Drone.AddRelativeTorque(0, 0, -15);
+
+			
+		}
+
+		public void lift()
+        {
+
+				Drone.AddRelativeForce(0, LiftSpeed*10, 0);
+
+			
+		}
+
+		public void dropper()
+        {
+
+				Drone.AddRelativeForce(0, -LiftSpeed*10, 0);
+
+			
+		}
+
+		public void TiltLeft()
+        {
+
+				transform.Rotate(0f, -rotationSpeed, 0f, Space.Self);
+
+			
+		}
+
+		public void TiltRight()
+        {
+
+				transform.Rotate(0f, rotationSpeed, 0f, Space.Self);
+
+			
+		}
+		public void lander()
+        {
+
+				//call land and set land bool to true so that you just descend from the selected location
+				//land();
+				Drone.AddRelativeForce(0, (-LiftSpeed) * Time.deltaTime, 0);
+
+			
+		}
+
+		public void screenshotter()
+        {
+
+
+				ScreenshotHandler.takeScreenShot_Static(500, 500);
+			
+		}
+
+#region landing
+void land()
+>>>>>>> Stashed changes
         {
 			landing = true;
 
